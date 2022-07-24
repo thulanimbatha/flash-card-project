@@ -10,8 +10,8 @@ window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
 
 # create canvas + add photo to canvas
 canvas = Canvas(width=800, height=526, bg=BACKGROUND_COLOR, highlightthickness=0)
-flash_card = PhotoImage(file="./images/card_front.png")
-canvas.create_image(400, 263, image=flash_card)
+flash_card_front = PhotoImage(file="./images/card_front.png")
+canvas.create_image(400, 263, image=flash_card_front)
 # TEXT 
 canvas.create_text(400, 160, text="Title", fill="black", font=("Times New Roman", 30, "italic"))
 canvas.create_text(400, 263, text="Word", fill="black", font=("Times New Roman", 50, "bold"))
