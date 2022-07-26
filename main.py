@@ -4,14 +4,21 @@ import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 
+current_card = {}
+words_to_learn = {}
 # -------------------create new flash card------------------
 
-# read the csv file
-data = pandas.read_csv("./data/spanish_words.csv")
-# convert csv file to dictionary
-total_words = data.to_dict(orient="records")
+try:
+    # read from saved words csv file
+    data = pandas.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("./data/spanish_words.csv")
+    total_words = original_data.to_dict(orient="records")
+else:
+    # convert csv file to dictionary
+    total_words = data.to_dict(orient="records")
 
-current_card = {}
+
 
 def next_card():
     global current_card
@@ -41,7 +48,7 @@ def known_words():
     total_words.remove(current_card)
     # create new csv file containing remaining words
     words_left = pandas.DataFrame(total_words)
-    words_left.to_csv("./data/words_to_learn.csv")
+    words_left.to_csv("./data/words_to_learn.csv", index=False)     # do not add index
     # call next_card function
     next_card()
 
